@@ -15,6 +15,7 @@ namespace Service.Services
         {
             CreateMap<Product, ProductDTO>(); 
             CreateMap<Product, ProductDTO>().ReverseMap();
+          
         }
         
     }

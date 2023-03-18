@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:ClientWPF"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid>
+    <Grid x:Name="mainGrid">
         <ListBox x:Name="ListProduct">
             <ListBox.ItemTemplate>
                 <DataTemplate>
@@ -15,7 +15,7 @@
                         <TextBlock  Text="{Binding Path=Price}"/>
                         <TextBlock Text="{Binding Path=TypeProduct}"/>
                     </StackPanel>
-                   
+
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>

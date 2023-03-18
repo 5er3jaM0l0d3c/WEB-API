@@ -12,7 +12,7 @@ namespace Service.Services
 {
     public class ProductServices : IProductService
     {
-        public ProductDbContext Context { get; set;  }
+        public ProductDbContext Context { get; set; }
         public IMapper Mapper { get; set; }
         public ProductServices(ProductDbContext productDbContext, IMapper mapper) 
         {

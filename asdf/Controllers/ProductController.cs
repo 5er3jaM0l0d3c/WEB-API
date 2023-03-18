@@ -8,10 +8,10 @@ namespace asdf.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ProductsController : ControllerBase
+    public class ProductController : ControllerBase
     {
         public IProductService ProductService { get; set; }
-        public ProductsController(IProductService productService)
+        public ProductController(IProductService productService)
         {
             ProductService = productService;
         }
@@ -50,6 +50,12 @@ namespace asdf.Controllers
         public void DeleteProduct(int id)
         {
             ProductService.DeleteProduct(id);
+        }
+
+        [HttpGet]
+        public string str()
+        {
+            return "Test";
         }
     }
 }

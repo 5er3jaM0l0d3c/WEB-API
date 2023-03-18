@@ -10,7 +10,7 @@ builder.Services.AddDbContext<ProductDbContext>(options =>
 options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.")));
 
 builder.Services.AddScoped<IProductService, ProductServices>();
-
+builder.Services.AddScoped<ITypeProduct, TypeProductServices>();
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
