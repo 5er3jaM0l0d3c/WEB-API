@@ -12,8 +12,8 @@
                 <DataTemplate>
                     <StackPanel>
                         <TextBlock Text="{Binding Path=Name}"/>
-                        <TextBlock  Text="{Binding Path=Price}"/>
-                        <TextBlock Text="{Binding Path=TypeProduct}"/>
+                        <TextBlock Text="{Binding Path=Price}"/>
+                        <TextBlock Text="{Binding Path=TypeProductId}"/>
                     </StackPanel>
 
                 </DataTemplate>

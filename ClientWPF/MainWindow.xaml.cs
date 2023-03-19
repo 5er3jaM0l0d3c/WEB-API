@@ -25,7 +25,7 @@ namespace ClientWPF
     public partial class MainWindow : Window
     {
         HttpClient client = new HttpClient();
-        ObservableCollection<string> ProductDTOs = new ObservableCollection<string>();
+        ObservableCollection<ProductDTO> ProductDTOs = new ObservableCollection<ProductDTO>();
         public MainWindow()
         {
             InitializeComponent();
@@ -35,13 +35,13 @@ namespace ClientWPF
 
         private async void Button_Click(object sender, RoutedEventArgs e)
         {
-            var respons = await client.GetAsync("https://localhost:7148/api/Product");
-            var products = await respons.Content.ReadAsAsync<string>();
+            var respons = await client.GetAsync("https://localhost:7148/api/Product/GetProducts");
+            var products = await respons.Content.ReadAsAsync<List<ProductDTO>>();
 
-            foreach (char product in products)
+            foreach (var product in products)
             {
 
-                ProductDTOs.Add(Convert.ToString(product));
+                ProductDTOs.Add(product);
             }
         }
     }
