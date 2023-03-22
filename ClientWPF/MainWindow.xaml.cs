@@ -1,4 +1,5 @@
-﻿using Infrastructur.DTO;
+﻿using Entities;
+using Infrastructur.DTO;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -25,23 +26,26 @@ namespace ClientWPF
     public partial class MainWindow : Window
     {
         HttpClient client = new HttpClient();
-        ObservableCollection<ProductDTO> ProductDTOs = new ObservableCollection<ProductDTO>();
+        ObservableCollection<Product> Products = new ObservableCollection<Product>();
+        ObservableCollection<TypeProduct> TypeProducts = new ObservableCollection<TypeProduct>();
         public MainWindow()
         {
             InitializeComponent();
-            ListProduct.ItemsSource = ProductDTOs;
+
+            ListProduct.ItemsSource = Products;
+
 
         }
 
         private async void Button_Click(object sender, RoutedEventArgs e)
         {
             var respons = await client.GetAsync("https://localhost:7148/api/Product/GetProducts");
-            var products = await respons.Content.ReadAsAsync<List<ProductDTO>>();
+            var products = await respons.Content.ReadAsAsync<List<Product>>();
 
             foreach (var product in products)
             {
 
-                ProductDTOs.Add(product);
+                Products.Add(product);
             }
         }
     }
