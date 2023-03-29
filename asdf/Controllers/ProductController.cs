@@ -17,13 +17,13 @@ namespace asdf.Controllers
         }
         [HttpGet(nameof(GetProducts))]
 
-        public List<ProductDTO> GetProducts()
+        public List<Product> GetProducts()
         {
             return ProductService.GetProducts();
         }
 
         [HttpGet(nameof(GetProduct))]
-        public ProductDTO GetProduct(int id)
+        public Product GetProduct(int id)
         {
             return ProductService.GetProduct(id);
         }
@@ -35,18 +35,18 @@ namespace asdf.Controllers
         }
 
         [HttpPost]
-        public void AddProduct(ProductDTO product)
+        public void AddProduct(Product product)
         {
             ProductService.AddProduct(product);
         }
 
         [HttpPut]
-        public void UpdateProduct(ProductDTO product, int id)
+        public void UpdateProduct(Product product)
         {
-            ProductService.UpdateProduct(product, id);
+            ProductService.UpdateProduct(product);
         }
 
-        [HttpDelete]
+        [HttpDelete(nameof(DeleteProduct))]
         public void DeleteProduct(int id)
         {
             ProductService.DeleteProduct(id);

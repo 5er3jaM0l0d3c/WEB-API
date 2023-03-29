@@ -25,28 +25,23 @@ namespace ClientWPF
     /// </summary>
     public partial class MainWindow : Window
     {
-        HttpClient client = new HttpClient();
-        ObservableCollection<Product> Products = new ObservableCollection<Product>();
-        ObservableCollection<TypeProduct> TypeProducts = new ObservableCollection<TypeProduct>();
         public MainWindow()
         {
             InitializeComponent();
-
-            ListProduct.ItemsSource = Products;
-
+      
+            Manager.MainFrame = MainFrame;
+            MainFrame.Navigate(new ShowProducts());
 
         }
 
-        private async void Button_Click(object sender, RoutedEventArgs e)
+        private void ShowProducts_Click(object sender, RoutedEventArgs e)
         {
-            var respons = await client.GetAsync("https://localhost:7148/api/Product/GetProducts");
-            var products = await respons.Content.ReadAsAsync<List<Product>>();
+            Manager.MainFrame.Navigate(new ShowProducts());
+        }
 
-            foreach (var product in products)
-            {
-
-                Products.Add(product);
-            }
+        private void ChangeProduct_Click(object sender, RoutedEventArgs e)
+        {
+            Manager.MainFrame.Navigate(new ChangeProduct());
         }
     }
 }

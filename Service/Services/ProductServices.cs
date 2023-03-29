@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Entities;
 using Infrastructur.DTO;
+using Microsoft.EntityFrameworkCore;
 using Service.Interface;
 using System;
 using System.Collections.Generic;
@@ -13,10 +14,8 @@ namespace Service.Services
     public class ProductServices : IProductService
     {
         public ProductDbContext Context { get; set; }
-        public IMapper Mapper { get; set; }
-        public ProductServices(ProductDbContext productDbContext, IMapper mapper) 
+        public ProductServices(ProductDbContext productDbContext) 
         {
-            Mapper = mapper;
             Context = productDbContext;
         }
         public decimal GetPriceAllProducts()
@@ -34,31 +33,26 @@ namespace Service.Services
             
         }
 
-        public ProductDTO GetProduct(int id)
+        public Product GetProduct(int id)
         {
             var product = Context.Products.Where(x => x.Id==id).FirstOrDefault();
-            var result = Mapper.Map<ProductDTO>(product);
-            return result;
+            return product;
         }
 
-        public List<ProductDTO> GetProducts()
+        public List<Product> GetProducts()
         {
-            var list = Context.Products.ToList();
-            var result = Mapper.Map<List<ProductDTO>>(list);
-            return result;
+            var list = Context.Products.Include(t=>t.TypeProduct).ToList();
+            return list;
         }
 
-        public void AddProduct(ProductDTO productDTO)
+        public void AddProduct(Product product)
         {
-            var product = Mapper.Map<Product>(productDTO);
             Context.Products.Add(product);
             Save();
         }
 
-        public void UpdateProduct(ProductDTO productDTO, int id)
+        public void UpdateProduct(Product product)
         {
-            var product = Mapper.Map<Product>(productDTO);
-            product.Id= id;
             Context.Products.Update(product);
             Save();
         }

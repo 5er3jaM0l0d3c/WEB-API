@@ -7,18 +7,10 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid x:Name="mainGrid">
-        <ListBox x:Name="ListProduct">
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel>
-                        <TextBlock Text="{Binding Path=Name}"/>
-                        <TextBlock Text="{Binding Path=Price}"/>
-                        <TextBlock Text="{Binding Path=TypeProduct.Name}"/>
-                    </StackPanel>
+        
+        <Frame x:Name="MainFrame" NavigationUIVisibility="Hidden"></Frame>
+       
+        
 
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
-        <Button Click="Button_Click" Width="175" Height="30" Content="Получить продукты"/>
     </Grid>
 </Window>

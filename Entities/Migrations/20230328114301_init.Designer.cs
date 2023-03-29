@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Entities.Migrations
 {
     [DbContext(typeof(ProductDbContext))]
-    [Migration("20230318162440_init")]
+    [Migration("20230328114301_init")]
     partial class init
     {
         /// <inheritdoc />
@@ -34,11 +34,10 @@ namespace Entities.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Name")
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal?>("Price")
-                        .HasColumnType("money");
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<int?>("TypeProductId")
                         .HasColumnType("int");
@@ -47,7 +46,7 @@ namespace Entities.Migrations
 
                     b.HasIndex("TypeProductId");
 
-                    b.ToTable("Product", (string)null);
+                    b.ToTable("Products");
                 });
 
             modelBuilder.Entity("Entities.TypeProduct", b =>
@@ -59,20 +58,18 @@ namespace Entities.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Name")
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
-                    b.ToTable("TypeProduct", (string)null);
+                    b.ToTable("TypeProducts");
                 });
 
             modelBuilder.Entity("Entities.Product", b =>
                 {
                     b.HasOne("Entities.TypeProduct", "TypeProduct")
                         .WithMany("Products")
-                        .HasForeignKey("TypeProductId")
-                        .HasConstraintName("FK_Product_TypeProduct");
+                        .HasForeignKey("TypeProductId");
 
                     b.Navigation("TypeProduct");
                 });

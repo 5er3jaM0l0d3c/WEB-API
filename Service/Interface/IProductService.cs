@@ -10,13 +10,13 @@ namespace Service.Interface
 {
     public interface IProductService
     {
-        List<ProductDTO> GetProducts();
-        ProductDTO GetProduct(int id);
+        List<Product> GetProducts();
+        Product GetProduct(int id);
         decimal GetPriceAllProducts();
 
-        void AddProduct(ProductDTO product);
+        void AddProduct(Product product);
 
-        void UpdateProduct(ProductDTO product, int id);
+        void UpdateProduct(Product product);
         
         void DeleteProduct(int id);
     }

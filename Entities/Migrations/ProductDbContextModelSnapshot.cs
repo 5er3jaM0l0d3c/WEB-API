@@ -31,11 +31,10 @@ namespace Entities.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Name")
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal?>("Price")
-                        .HasColumnType("money");
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<int?>("TypeProductId")
                         .HasColumnType("int");
@@ -44,7 +43,7 @@ namespace Entities.Migrations
 
                     b.HasIndex("TypeProductId");
 
-                    b.ToTable("Product", (string)null);
+                    b.ToTable("Products");
                 });
 
             modelBuilder.Entity("Entities.TypeProduct", b =>
@@ -56,27 +55,20 @@ namespace Entities.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Name")
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
-                    b.ToTable("TypeProduct", (string)null);
+                    b.ToTable("TypeProducts");
                 });
 
             modelBuilder.Entity("Entities.Product", b =>
                 {
                     b.HasOne("Entities.TypeProduct", "TypeProduct")
-                        .WithMany("Products")
-                        .HasForeignKey("TypeProductId")
-                        .HasConstraintName("FK_Product_TypeProduct");
+                        .WithMany()
+                        .HasForeignKey("TypeProductId");
 
                     b.Navigation("TypeProduct");
-                });
-
-            modelBuilder.Entity("Entities.TypeProduct", b =>
-                {
-                    b.Navigation("Products");
                 });
 #pragma warning restore 612, 618
         }
