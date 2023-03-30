@@ -35,13 +35,13 @@ namespace asdf.Controllers
         }
 
         [HttpPost]
-        public void AddProduct(Product product)
+        public void AddProduct([FromBody] Product product)
         {
             ProductService.AddProduct(product);
         }
 
         [HttpPut]
-        public void UpdateProduct(Product product)
+        public void UpdateProduct([FromBody] Product product)
         {
             ProductService.UpdateProduct(product);
         }

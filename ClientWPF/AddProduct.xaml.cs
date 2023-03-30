@@ -46,9 +46,10 @@ namespace ClientWPF
             product.Name = PName.Text;
             product.Price = decimal.Parse(PPrice.Text);
             product.TypeProductId = TypeProducts.SelectedIndex + 1;
-            var jsonProduct = System.Text.Json.JsonSerializer.Serialize(product);
-            HttpContent content = new StringContent(jsonProduct);
-            var respons = await client.PostAsync("https://localhost:7148/api/Product/", content);
+
+            var jsonProduct = JsonConvert.SerializeObject(product);
+            HttpContent content = new StringContent(jsonProduct, Encoding.UTF8, "application/json");
+            var respons = await client.PostAsync("https://localhost:7148/api/Product", content);
             Manager.MainFrame.Content = new ShowProducts();
         }
     }

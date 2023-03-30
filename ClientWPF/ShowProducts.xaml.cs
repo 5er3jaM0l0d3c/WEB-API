@@ -36,12 +36,12 @@ namespace ClientWPF
         {
             var respons = await client.GetAsync("https://localhost:7148/api/Product/GetProducts");
             var products = await respons.Content.ReadAsAsync<List<Product>>();
-
+            ListProduct.ItemsSource = Products;
             foreach (var product in products)
             {
                 Products.Add(product);
             }
-            ListProduct.ItemsSource = Products;
+            
         }
 
         private void Change_Click(object sender, RoutedEventArgs e)
@@ -65,6 +65,12 @@ namespace ClientWPF
         private void AddProduct(object sender, RoutedEventArgs e)
         {
             Manager.MainFrame.Navigate(new AddProduct());
+        }
+
+        private void Update_Page(object sender, RoutedEventArgs e)
+        {
+            Show();
+            Manager.MainFrame.Content = new ShowProducts();
         }
     }
 }

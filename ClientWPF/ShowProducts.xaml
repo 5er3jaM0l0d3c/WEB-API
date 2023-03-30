@@ -44,14 +44,22 @@
                             <TextBlock Text="{Binding Price}"/>
                             <TextBlock Text="{Binding TypeProduct.Name}"/>
                         </StackPanel>
-                        <DockPanel Grid.Column="1">
+                        <StackPanel Orientation="Horizontal" Grid.Column="1">
                             <Button Content="Редактировать" Click="Change_Click" Width="175" Height="30" Margin="5,0,5,0" HorizontalAlignment="Right"/>
                             <Button Content="Удалить" Click="Delete_Click" Width="175" Height="30" Margin="5,0,5,0" HorizontalAlignment="Right"/>
-                        </DockPanel>
+                        </StackPanel>
                     </Grid>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
+        <Button
+            Content="Обновить"
+            Grid.Row="1"
+            Height="30"
+            Width="175"
+            HorizontalAlignment="Left"
+            Margin="10"
+            Click="Update_Page"/>
         <Button Content="Добавить" Height="30" Width="175" Grid.Row="1" HorizontalAlignment="Right" Margin="0,0,20,0" Click="AddProduct"/>
     </Grid>
 </Page>
